@@ -91,6 +91,8 @@ struct IntStack{
         stack[top]=e;
         top++;
     }
+    }
+
     int pop(){
     if (not is_empty()){
         top--;
@@ -98,18 +100,20 @@ struct IntStack{
     }
     return -9999;
     }
+
     void print(){
         for (int i=0; i<top;i++){
         std::cout<<stack[i]<<" ";
         }
     }
+    
     bool is_empty(){
     return top==0;
     }
+
     bool is_full(){
     return size == top ;
     }
-}
 };
 
 
