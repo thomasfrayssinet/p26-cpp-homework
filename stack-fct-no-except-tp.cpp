@@ -77,32 +77,70 @@ void delete_stack(int* t){
         delete [] t;
     }
 
+struct IntStack{
+    int size;
+    int top;
+    int* stack;
+    IntStack (int s){
+        size = s;
+        top = 0;
+        stack = new int[size];
+    }
+    void push(int e){
+    if (not is_full()){
+        stack[top]=e;
+        top++;
+    }
+    int pop(){
+    if (not is_empty()){
+        top--;
+        return stack[top];
+    }
+    return -9999;
+    }
+    void print(){
+        for (int i=0; i<top;i++){
+        std::cout<<stack[i]<<" ";
+        }
+    }
+    bool is_empty(){
+    return top==0;
+    }
+    bool is_full(){
+    return size == top ;
+    }
+}
+};
+
+
 int main()
 {
-
+    
     // on définit ici les 3 variables qui constituent la pile
-    int size = 5;
-    int* stack=create_stack(size);
-    int top = 0;
+    //int size = 12;
+    //int* stack=create_stack(size);
+    //int top = 0;
+    //=>
+    IntStack st(12);
 
-    print(stack,top); // affiche [ [
-    push(stack, -17, size, top);
-    print(stack, top); // affiche [ -17 [
+    st.print(); // affiche [ [
+    st.push(-17);
+    st.print(); // affiche [ -17 [
 
     // on affiche l'élément en haut de pile
-    std::cout << pop(stack, top) << std::endl; // affiche -17
+    std::cout << st.pop() << std::endl; // affiche -17
 
-    push(stack, 28, size, top);
-    push(stack, 62, size, top);
+    st.push(28);
+    st.push(62);
 
-    print(stack,top); // affiche [ 28 62 [
+    st.print(); // affiche [ 28 62 [
 
-    int e = pop(stack,top);
+    int e = st.pop();
     std::cout << e << std::endl; // affiche 62
 
-    print(stack, top);                         // affiche [ 28 [
-    std::cout << pop(stack, top) << std::endl; // affiche 28
-    pop(stack, top);                           // affiche cannot pop, the stack is empty
+    st.print();                         // affiche [ 28 [
+    std::cout << st.pop() << std::endl; // affiche 28
+    st.pop();                           // affiche cannot pop, the stack is empty
     // à partir d'ici la stack n'est plus correcte :
     //    l'utilisateur croit avoir un élément à dépiler or il n'en a pas...
     //    on verra les exceptions qui avertissent l'utilisateur d'un problème
