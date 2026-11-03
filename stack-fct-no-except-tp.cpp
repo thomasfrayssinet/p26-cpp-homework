@@ -62,39 +62,47 @@ int pop(int stack[], int& top) // (cette fonction dépile)
 // elle doit s'assurer que la pile n'est pas vide avant de la dépiler
 {
     if (is_empty(top)==false){
-        return stack[top];
         top--;
+        return stack[top];
     }
     return -9999; // pour compiler/exécuter l'exemple
 
 }
+
+int* create_stack(int n){
+    return new int[n];
+}
+
+void delete_stack(int* t){
+        delete [] t;
+    }
 
 int main()
 {
 
     // on définit ici les 3 variables qui constituent la pile
     int size = 5;
-    int stack[size];
+    int* stack=create_stack(size);
     int top = 0;
 
-    print(/* les arguments */); // affiche [ [
-    push(/* les arguments */ -17);
-    print(/* les arguments */); // affiche [ -17 [
+    print(stack,top); // affiche [ [
+    push(stack, -17, size, top);
+    print(stack, top); // affiche [ -17 [
 
     // on affiche l'élément en haut de pile
-    std::cout << pop(/* les arguments */) << std::endl; // affiche -17
+    std::cout << pop(stack, top) << std::endl; // affiche -17
 
-    push(/* les arguments */ 28);
-    push(/* les arguments */ 62);
+    push(stack, 28, size, top);
+    push(stack, 62, size, top);
 
-    print(/* les arguments */); // affiche [ 28 62 [
+    print(stack,top); // affiche [ 28 62 [
 
-    int e = pop(/* les arguments */);
+    int e = pop(stack,top);
     std::cout << e << std::endl; // affiche 62
 
-    print(/* les arguments */);                         // affiche [ 28 [
-    std::cout << pop(/* les arguments */) << std::endl; // affiche 28
-    pop(/* les arguments */);                           // affiche cannot pop, the stack is empty
+    print(stack, top);                         // affiche [ 28 [
+    std::cout << pop(stack, top) << std::endl; // affiche 28
+    pop(stack, top);                           // affiche cannot pop, the stack is empty
     // à partir d'ici la stack n'est plus correcte :
     //    l'utilisateur croit avoir un élément à dépiler or il n'en a pas...
     //    on verra les exceptions qui avertissent l'utilisateur d'un problème
