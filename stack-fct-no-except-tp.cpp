@@ -22,42 +22,61 @@
 
 // Voici les entêtes des fonctions où vous devez passer les arguments :
 
-void print(/* les arguments ici */)
+void print(int stack[], int top)
 // cette fonction affiche les entiers empilés
 // elle a besoin de la pile et du nombre d'éléments empilés
 {
-    // votre code ici
+for (int i=0; i<top;i++){
+    std::cout<<stack[i]<<" ";
+}
 }
 
 // renvoie true si la pile est vide, false sinon
-bool is_empty(/* les arguments ici */)
+bool is_empty(int  top)
 {
-    // votre code ici
-    return false; // pour compiler/exécuter l'exemple
+    if (top==0){
+        return true;
+    }
+    else{
+        return false;
+    }
+     // pour compiler/exécuter l'exemple
 }
 
 // renvoie true si la pile est pleine, false sinon
-bool is_full(/* les arguments ici */)
+bool is_full(int size, int top)
 {
-    // votre code ici
-    return false; // pour compiler/exécuter l'exemple
+    if (size==top){
+        return true
+    }
+    else {
+        return false;
+    }
+     // pour compiler/exécuter l'exemple
 }
 
-void push(/* les arguments ici */ int e) // e est l'élément à empiler
+void push(int stack [], int e, int size, int& top) // e est l'élément à empiler
 // cette fonction ajoute un entier à la pile passé en argument
 // elle vérifie que la pile n'est pas pleine avant d'empiler
 // et ne fait rien sinon
 {
-    // votre code ici
+    if (is_full(size,top==false)){
+        stack[top]=e;
+        top++;
+    }
 }
 
-int pop(/* les arguments ici */) // (cette fonction dépile)
+int pop(int stack[], int& top) // (cette fonction dépile)
 // cette fonction retourne l'entier en haut de la pile (le dernier empilé)
 // à la sortie de cette fonction l'élément retourné n'est plus compté dans la pile
 // elle doit s'assurer que la pile n'est pas vide avant de la dépiler
 {
-    // votre code ici
+    if (is_empty(top)==false){
+        top--;
+        return stack[top];
+    }
     return -9999; // pour compiler/exécuter l'exemple
+
 }
 
 int main()
