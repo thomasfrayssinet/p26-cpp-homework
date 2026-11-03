@@ -34,24 +34,14 @@ for (int i=0; i<top;i++){
 // renvoie true si la pile est vide, false sinon
 bool is_empty(int  top)
 {
-    if (top==0){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return top==0;
      // pour compiler/exécuter l'exemple
 }
 
 // renvoie true si la pile est pleine, false sinon
 bool is_full(int size, int top)
 {
-    if (size==top){
-        return true
-    }
-    else {
-        return false;
-    }
+    return size == top ;
      // pour compiler/exécuter l'exemple
 }
 
@@ -60,7 +50,7 @@ void push(int stack [], int e, int size, int& top) // e est l'élément à empil
 // elle vérifie que la pile n'est pas pleine avant d'empiler
 // et ne fait rien sinon
 {
-    if (is_full(size,top==false)){
+    if (is_full(size,top)==false){
         stack[top]=e;
         top++;
     }
@@ -72,8 +62,8 @@ int pop(int stack[], int& top) // (cette fonction dépile)
 // elle doit s'assurer que la pile n'est pas vide avant de la dépiler
 {
     if (is_empty(top)==false){
-        top--;
         return stack[top];
+        top--;
     }
     return -9999; // pour compiler/exécuter l'exemple
 
